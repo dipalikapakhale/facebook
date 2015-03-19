@@ -1,0 +1,51 @@
+<%= current_user.id %>
+  <div class="large-4 row">
+  <div class=" large-3 columns"></div>
+  <div class=" large-4 columns"></div>
+    <span style="text-align: right">
+     <%= form_tag :friendships,url: friendships_path,:method=>'get' do %>
+       <%= text_field_tag :find_friend_string %>
+       <%= submit_tag  "Find Friend",:class=>"btn btn-info"%>
+     <% end %>
+
+    </span>
+    </div>
+  <%= link_to "Add-friend",friendships_path(@friendship),:class=>"btn btn-info" %>
+
+  
+
+<table>
+  <tr>
+    <th>&nbsp;</th>
+    <td>
+      <%= image_tag(@user.avatar) %>
+    </td>
+  </tr>
+  <tr>
+    <th>First Name</th>
+    <td>
+      <%= @user.first_name %>
+    </td>
+  </tr>
+  <tr>
+    <th>Last Name</th>
+    <td>
+      <%= @user.last_name %>
+    </td>
+  </tr>
+  <tr>
+    <th>Email</th>
+    <td>
+      <%= @user.email %>
+    </td>
+  </tr>
+  <tr>
+    <th>Date of birth</th>
+    <td>
+      <%= @user.date_of_birth %>
+    </td>
+  </tr>
+  
+  <td><%= link_to 'Edit', edit_user_path(@user),:class=>"btn btn-primary" %></td>
+  <td><%= link_to 'back',friendships_path,:class=>"btn btn-primary" %></td>
+</table>

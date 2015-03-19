@@ -1,0 +1,64 @@
+<%= form_for :user, url: "/users/#{@user.id}", method: :put,:html => { :multipart => true } do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@user.errors.count, "error") %> prohibited
+        this user from being saved:
+      </h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="row">
+  <div class="col-lg-6">
+  <p>
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </p>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class=" large-3 columns">
+  <p>
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </p>
+  </div>
+</div>
+  <div class="row">
+  <div class=" large-3 columns">
+  <p>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </p>
+  </div>
+</div>
+
+  <div class="row">
+  <div class=" large-3 columns">
+  <p>
+    <%= f.label :date_of_birth %><br>
+    <%= f.text_field :date_of_birth %>
+  </p>
+  </div>
+</div>
+  
+  <div class="row">
+  <div class=" large-3 columns">
+  <%= f.file_field :avatar %>
+  </p>
+  </div>
+</div>
+<div class="row">
+  <div class=" large-3 columns">
+  <%= f.button :submit , :class=>"btn btn-primary" %> 
+  <% end %>
+  </div>
+</div><br>
+
+

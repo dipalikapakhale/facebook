@@ -1,0 +1,16 @@
+<% @masseges.each do |massege| %>
+	<%= massege.body %>
+	
+<% end %>
+
+<%= form_for @massege do |f| %> 
+<%= f.hidden_field  :friend_id, value: params[:friend_id] %>
+<%= f.hidden_field :user_id, value: current_user.id %>
+  <div class="row">
+  <div class=" large-3 columns">
+<%= f.text_area :body %>
+</div>
+</div>
+<%= f.submit  "send message",:class=>"btn btn-success"%>
+<% end %><br>
+<%= link_to "back", friendships_path,:class=>"btn btn-info"%>

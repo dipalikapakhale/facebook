@@ -1,0 +1,41 @@
+<% @users.each do |user| %>
+<%#= user.id %>
+<% unless user == current_user %>
+<div class="table table-bordered" >
+<table>
+<tr>
+
+<th><%= user.email %></th>
+<td>
+<% friendship = Friendship.check_friendship(user.id, current_user.id) %>
+<% if friendship.present?%>
+<% if friendship.friend_id == current_user.id && friendship.status == "pending" %>
+<%= link_to "Accept", accepted_friends_friendship_path(friendship), :metpiuehod => :put %>
+<%= link_to "reject", rejected_friends_friendship_path(friendship), :method => :put %>
+<% elsif friendship.status == "accepted" %>
+<b>Friendship</b>
+<% elsif friendship.status == "rejected" %>
+Rejected Friend
+<% end %>
+<% else %>
+<%= link_to "Add Friend",friendships_path(:friend_id => user), :method => :post,:class =>"btn btn-info" %>
+<% end %> |
+<%= link_to "Send Message" , masseges_path(:friend_id => user),:method => :get,:class =>"btn btn-success" %> 
+</td>
+</tr>
+</table>
+</div>
+<% end %>
+<% end %>
+<h2>Friends</h2>
+<ul>
+<% for friendship in @user.friendships %>
+<li>
+<%= User.find(friendship.friend_id).first_name%>
+<%#if friendship.present? %>
+<%= link_to "remove", friendship, :method => :delete,:class=>"btn btn-info" %>
+<% end %>
+<%#end %>
+</li>
+</ul></br>
+<%= link_to "back",users_path,:class => "btn btn-primary" %>
